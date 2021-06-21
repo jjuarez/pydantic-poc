@@ -58,7 +58,7 @@ Of course you can modify the configuration of the application using the environm
 HOST="127.0.0.1" PORT=5555 LOG_LEVEL="debug" make docker/start
 ```
 
-### Development mode
+### Development mode
 
 Having a fresh installation of the depencies in place, this will allow you to play inside the virtual environment
 

@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,11 +20,33 @@ jobs:
           python-version: '3.9'
       - run: python --version
 
-      - name: Lint
-        run: make lint
+      - name: flake8
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          make lint
 
-      - name: Build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: python --version
+
+      - name: pytest
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          make test
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-docker@v2
+
+      - name: build
         run: make docker/build
 
-      - name: Test
-        run: make test

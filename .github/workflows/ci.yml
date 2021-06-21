@@ -1,0 +1,30 @@
+---
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: python --version
+
+      - name: Lint
+        run: make lint
+
+      - name: Build
+        run: make docker/build
+
+      - name: Test
+        run: make test

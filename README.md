@@ -20,11 +20,10 @@ I recomend you to use a python version management, for example [pyenv](https://g
 
 ### Configuration
 
-| Property  | Type                          | Default value |
-|-----------|-------------------------------|---------------|
-| HOST      | str                           | 0.0.0.0       |
-| PORT      | int                           | 8000          |
-| LOG_LEVEL | str(debug,info,warning,error) | info          |
+| Property  | Type | Default value |
+|-----------|------|---------------|
+| HOST      | str  | 0.0.0.0       |
+| PORT      | int  | 8000          |
 
 For example, if you want to change the default port, you just need to make something like this:
 
@@ -55,7 +54,7 @@ make docker/stop
 Of course you can modify the configuration of the application using the environment variables, for example:
 
 ```bash
-HOST="127.0.0.1" PORT=5555 LOG_LEVEL="debug" make docker/start
+HOST="127.0.0.1" PORT=5555 make docker/start
 ```
 
 ### Development mode
@@ -64,5 +63,11 @@ Having a fresh installation of the depencies in place, this will allow you to pl
 
 ```bash
 pipenv shell
+```
+
+For a complete reference of the operations availabe just execute:
+
+```bash
+make help
 ```
 

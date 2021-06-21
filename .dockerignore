@@ -1,5 +1,9 @@
 .git
+.github
+.flake8
+pytest.ini
 Makefile
 Dockerfile
 README.md
 LICENSE.txt
+

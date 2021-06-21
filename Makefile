@@ -13,6 +13,14 @@ LOG_LEVEL         ?= info
 help: ## Shows this pretty help screen
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nTargets:\n"} /^[a-zA-Z//_-]+:.*?##/ { printf " %-20s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
+.PHONY: lint
+lint: ## lint
+	@pipenv run flake8 --config .flake8 ./app ./tests
+
+.PHONY: test
+test: ## test
+	@pipenv run pytest
+
 .PHONY: docker/build
 docker/build: ## Builds a Docker image for the project
 	@docker image build --tag $(DOCKER_IMAGE_NAME):latest --file Dockerfile .
@@ -30,3 +38,4 @@ docker/start: docker/build ## Runs the dockerized version of the app
 docker/stop: ## Stops the docker container for the app
 	@docker container stop pydantic-poc >/dev/null 2>&1
 	@docker container rm pydantic-poc >/dev/null 2>&1
+

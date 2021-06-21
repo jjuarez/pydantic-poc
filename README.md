@@ -32,7 +32,7 @@ For example, if you want to change the default port, you just need to make somet
   PORT=5555 pipenv run app/main.py
   ```
 
-### Docker way
+### Docker way
 
 1. Build the app Docker image
 
